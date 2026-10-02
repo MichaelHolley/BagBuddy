@@ -1,42 +1,26 @@
-# sv
+# BagBuddy
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Packing lists for trips. Each trip gets its own list, built by pulling whole categories from a reusable catalog. Per-day items scale with the trip length and can be overridden by hand.
 
-## Creating a project
+SvelteKit (remote functions) · Svelte 5 · Drizzle + SQLite (libsql) · Tailwind CSS
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
+## Setup
 
 ```sh
-# recreate this project
-pnpm dlx sv@0.16.3 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:none" sveltekit-adapter="adapter:auto" mcp="ide:claude-code+setup:remote" experimental="versions:kit+features:async,remoteFunctions,explicitEnvironmentVariables,handleRenderingErrors" --install pnpm vibe-svelte
+pnpm install
+cp .env.example .env
+pnpm run db:setup   # applies migrations and seeds the catalog (seed is skipped if categories exist)
+pnpm run dev
 ```
 
-## Developing
+## Scripts
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+| Script                     | Purpose                                     |
+| -------------------------- | ------------------------------------------- |
+| `pnpm run check`           | Type-check                                  |
+| `pnpm run test`            | Unit tests                                  |
+| `pnpm run lint` / `format` | Prettier + ESLint                           |
+| `pnpm run db:generate`     | Create a migration after editing the schema |
+| `pnpm run db:migrate`      | Apply migrations                            |
+| `pnpm run db:seed`         | Seed the default catalog                    |
+| `pnpm run db:studio`       | Browse the database                         |

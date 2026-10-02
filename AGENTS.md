@@ -13,6 +13,10 @@ Use conventional commit messages like 'feat:', 'fix:', 'chore:', ...
 Use `package.json` scripts over `pnpx` and `npx` commands.
 Validate your changes with `pnpm run check`.
 
+## Database
+
+Give every migration a descriptive name: `pnpm run db:generate --name <what_it_does>` (e.g. `add_trip_notes`), never the random drizzle-kit default.
+
 ## Documentation
 
 - Only add a comment when complexity is genuinely high **and** the naming does not already convey enough information.
