@@ -20,7 +20,7 @@
 	title={label}
 	aria-label={label}
 	class={[
-		'grid size-9 shrink-0 place-items-center rounded-full transition disabled:opacity-40',
+		'grid size-9 shrink-0 place-items-center rounded-full transition enabled:active:scale-[0.97] disabled:opacity-40',
 		variant === 'primary'
 			? 'bg-ink text-paper hover:bg-ink/85'
 			: 'text-muted hover:bg-ink/5 hover:text-ink',

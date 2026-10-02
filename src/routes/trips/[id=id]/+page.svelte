@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { backOut } from 'svelte/easing';
 	import { getCatalog } from '#lib/api/catalog.remote.js';
 	import {
 		deleteTrip,
@@ -19,6 +20,7 @@
 	import Stepper from '#lib/components/Stepper.svelte';
 	import TripCategorySection from '#lib/components/TripCategorySection.svelte';
 	import type { TripItemPatch } from '#lib/components/TripItemRow.svelte';
+	import { scale, slide } from '#lib/motion.js';
 
 	let { params } = $props();
 
@@ -27,6 +29,7 @@
 
 	const groups = $derived(Map.groupBy(trip.items, (item) => item.categoryName));
 	const packed = $derived(trip.items.filter((item) => item.packed).length);
+	const allPacked = $derived(packed === trip.items.length);
 	const addedSourceIds = $derived(new Set(trip.items.map((item) => item.sourceCatalogItemId)));
 
 	let duplicating = $state(false);
@@ -102,7 +105,9 @@
 		</div>
 	</div>
 	{#if duplicating}
-		<DuplicateTripForm {trip} oncancel={() => (duplicating = false)} />
+		<div transition:slide>
+			<DuplicateTripForm {trip} oncancel={() => (duplicating = false)} />
+		</div>
 	{/if}
 	<textarea
 		value={trip.notes ?? ''}
@@ -112,10 +117,22 @@
 		class="w-full resize-y field text-sm"
 		onchange={(e) => patchTrip({ notes: e.currentTarget.value })}></textarea>
 	{#if trip.items.length}
-		<div class={['rounded-[20px] p-4', packed === trip.items.length ? 'bg-lime' : 'bg-white']}>
-			<p class="mb-1.5 text-sm font-medium">
-				{packed === trip.items.length ? 'All packed! 🎉' : 'Packing progress'}
-			</p>
+		<div
+			class={[
+				'rounded-[20px] p-4 transition-colors duration-500',
+				allPacked ? 'bg-lime' : 'bg-white'
+			]}
+		>
+			{#if allPacked}
+				<p
+					class="mb-1.5 origin-left text-sm font-medium"
+					in:scale={{ start: 0.8, easing: backOut }}
+				>
+					All packed! 🎉
+				</p>
+			{:else}
+				<p class="mb-1.5 text-sm font-medium">Packing progress</p>
+			{/if}
 			<ProgressBar done={packed} total={trip.items.length} />
 		</div>
 	{/if}
@@ -127,19 +144,23 @@
 </section>
 
 <div class="mt-8 flex flex-col gap-3">
-	{#each groups as [name, items] (name)}
-		<TripCategorySection
-			{name}
-			{items}
-			days={trip.days}
-			onpatch={patchItem}
-			onremove={removeItem}
-		/>
-	{:else}
-		<p class="rounded-[20px] border border-dashed border-line p-6 text-center text-muted">
-			Your list is empty. Add some categories above to get started.
-		</p>
-	{/each}
+	{#key trip.id}
+		{#each groups as [name, items] (name)}
+			<div transition:slide>
+				<TripCategorySection
+					{name}
+					{items}
+					days={trip.days}
+					onpatch={patchItem}
+					onremove={removeItem}
+				/>
+			</div>
+		{:else}
+			<p class="rounded-[20px] border border-dashed border-line p-6 text-center text-muted">
+				Your list is empty. Add some categories above to get started.
+			</p>
+		{/each}
+	{/key}
 </div>
 
 <section class="mt-8 mb-12">

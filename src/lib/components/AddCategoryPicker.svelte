@@ -30,7 +30,7 @@
 		<button
 			type="button"
 			class={[
-				'inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-sm transition disabled:opacity-50',
+				'inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-sm transition enabled:active:scale-[0.97] disabled:opacity-50',
 				complete ? 'border-lime bg-lime text-ink' : 'border-line bg-white text-ink hover:border-ink'
 			]}
 			disabled={!!addCategoryToTrip.pending || category.items.length === 0}

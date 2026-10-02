@@ -12,7 +12,10 @@
 		aria-valuemax={total}
 		aria-valuenow={done}
 	>
-		<div class="h-full rounded-full bg-ink transition-all" style:width="{percent}%"></div>
+		<div
+			class="h-full rounded-full bg-ink transition-[width] duration-500 ease-out"
+			style:width="{percent}%"
+		></div>
 	</div>
 	{#if label}
 		<span class="shrink-0 text-xs font-medium tabular-nums">{done}/{total}</span>
