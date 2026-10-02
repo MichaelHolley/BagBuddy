@@ -23,12 +23,12 @@
 	const quantity = $derived(computeQuantity(item, days, item.quantityOverride));
 </script>
 
-<li class={['flex items-center gap-1 py-1.5', item.packed && 'text-stone-400']}>
+<li class={['flex items-center gap-1 py-1.5', item.packed && 'text-muted/70']}>
 	<input
 		type="checkbox"
 		checked={item.packed}
 		aria-label="Packed {item.name}"
-		class="size-5 shrink-0 accent-teal-700"
+		class="size-5 shrink-0 accent-ink"
 		onchange={(e) => onpatch({ packed: e.currentTarget.checked })}
 	/>
 	<InlineEdit

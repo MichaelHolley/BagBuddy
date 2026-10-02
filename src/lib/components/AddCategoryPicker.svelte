@@ -31,9 +31,7 @@
 			type="button"
 			class={[
 				'inline-flex items-center gap-1 rounded-full border px-3 py-1.5 text-sm transition disabled:opacity-50',
-				complete
-					? 'border-teal-200 bg-teal-50 text-teal-800'
-					: 'border-stone-300 bg-white text-stone-700 hover:border-teal-600 hover:text-teal-800'
+				complete ? 'border-lime bg-lime text-ink' : 'border-line bg-white text-ink hover:border-ink'
 			]}
 			disabled={!!addCategoryToTrip.pending || category.items.length === 0}
 			onclick={() => add(category)}
@@ -44,5 +42,5 @@
 	{/each}
 </div>
 {#if message}
-	<p class="mt-2 text-sm text-stone-600" role="status">{message}</p>
+	<p class="mt-2 text-sm text-muted" role="status">{message}</p>
 {/if}

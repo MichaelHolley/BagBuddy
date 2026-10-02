@@ -13,15 +13,15 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<div class="min-h-dvh bg-stone-100 text-stone-900">
-	<header class="sticky top-0 z-10 border-b border-stone-200 bg-white/90 backdrop-blur">
-		<nav class="mx-auto flex max-w-2xl items-center gap-1 px-4 py-2">
-			<a href="/" class="mr-auto text-lg font-bold text-teal-800">🎒 BagBuddy</a>
+<div class="min-h-dvh bg-paper text-ink antialiased">
+	<header class="sticky top-0 z-10 rounded-b-[28px] bg-lime">
+		<nav class="mx-auto flex max-w-2xl items-center gap-1 px-4 py-3">
+			<a href="/" class="mr-auto text-xl font-medium tracking-[-0.03em]">bagbuddy</a>
 			{#each links as link (link.href)}
 				<a
 					href={link.href}
 					aria-current={page.url.pathname === link.href ? 'page' : undefined}
-					class="rounded-lg px-3 py-1.5 text-sm font-medium text-stone-600 hover:bg-stone-100 aria-[current=page]:bg-teal-50 aria-[current=page]:text-teal-800"
+					class="rounded-full px-4 py-1.5 text-sm font-medium transition hover:bg-ink/10 aria-[current=page]:bg-ink aria-[current=page]:text-paper"
 				>
 					{link.label}
 				</a>
@@ -29,7 +29,7 @@
 		</nav>
 	</header>
 
-	<main class="mx-auto max-w-2xl px-4 py-6">
+	<main class="mx-auto max-w-2xl px-4 pt-10 pb-8">
 		{@render children()}
 	</main>
 </div>

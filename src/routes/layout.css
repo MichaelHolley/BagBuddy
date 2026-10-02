@@ -1,13 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Sono:wght,MONO@400..600,0..1&display=swap');
 @import 'tailwindcss';
 
+@theme {
+	--font-sans: 'Sono', ui-sans-serif, system-ui, sans-serif;
+	--color-ink: #14140f;
+	--color-paper: #f5f5eb;
+	--color-wash: #ebebdf;
+	--color-line: #d2d2c8;
+	--color-muted: #6e6e64;
+	--color-lime: #beff50;
+}
+
+@layer base {
+	html {
+		/* MONO 0 selects Sono's proportional cut instead of the monospaced one. */
+		font-variation-settings: 'MONO' 0;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-ink);
+		outline-offset: 2px;
+	}
+}
+
+@utility heading {
+	@apply text-4xl/[1.05] font-medium tracking-[-0.03em] sm:text-[2.75rem];
+}
+
 @utility field {
-	@apply rounded-md border border-stone-300 bg-white px-2 py-1.5 focus:border-teal-600 focus:ring-1 focus:ring-teal-600 focus:outline-none aria-invalid:border-red-500;
+	@apply rounded-lg border border-line bg-white px-3 py-2 placeholder:text-muted/70 focus:border-ink focus:outline-none aria-invalid:border-red-600;
 }
 
 @utility btn {
-	@apply inline-flex items-center justify-center gap-1.5 rounded-lg bg-teal-700 px-4 py-2 font-medium text-white transition hover:bg-teal-800 disabled:opacity-50;
+	@apply inline-flex items-center justify-center gap-1.5 rounded-full bg-ink px-5 py-2.5 font-medium text-paper transition hover:bg-ink/85 disabled:opacity-40;
 }
 
 @utility btn-secondary {
-	@apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-stone-300 bg-white px-4 py-2 font-medium text-stone-700 transition hover:bg-stone-50 disabled:opacity-50;
+	@apply inline-flex items-center justify-center gap-1.5 rounded-full border border-ink px-5 py-2.5 font-medium text-ink transition hover:bg-ink/5 disabled:opacity-40;
 }

@@ -7,9 +7,9 @@
 	const { fields } = duplicateTrip;
 </script>
 
-<form {...duplicateTrip} class="rounded-xl border border-teal-200 bg-teal-50 p-4">
+<form {...duplicateTrip} class="rounded-[20px] bg-lime p-5">
 	<input {...fields.id.as('hidden', trip.id)} />
-	<label class="block text-sm font-medium text-teal-900" for="duplicate-name">
+	<label class="block text-sm font-medium text-ink" for="duplicate-name">
 		Name for the copy (packed items are reset)
 	</label>
 	<!-- svelte-ignore a11y_autofocus -->

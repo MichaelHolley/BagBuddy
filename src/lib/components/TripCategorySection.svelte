@@ -20,12 +20,12 @@
 	const packed = $derived(items.filter((item) => item.packed).length);
 </script>
 
-<section class="rounded-xl border border-stone-200 bg-white px-3 py-3 shadow-sm">
+<section class="rounded-[20px] bg-white px-3 py-4">
 	<header class="mb-1 flex items-center gap-3 px-1">
-		<h2 class="font-semibold">{name}</h2>
+		<h2 class="font-medium">{name}</h2>
 		<div class="ml-auto w-28"><ProgressBar done={packed} total={items.length} /></div>
 	</header>
-	<ul class="divide-y divide-stone-100">
+	<ul class="divide-y divide-wash">
 		{#each items as item (item.id)}
 			<TripItemRow
 				{item}

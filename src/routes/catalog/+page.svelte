@@ -6,8 +6,8 @@
 
 <svelte:head><title>Catalog · BagBuddy</title></svelte:head>
 
-<h1 class="text-2xl font-bold">Catalog</h1>
-<p class="mt-1 text-sm text-stone-500">
+<h1 class="heading">Catalog</h1>
+<p class="mt-1 text-sm text-muted">
 	Reusable categories you can add to trips. Changes here never touch existing trips.
 </p>
 
@@ -31,6 +31,6 @@
 	{#each await getCatalog() as category (category.id)}
 		<CatalogCategory {category} />
 	{:else}
-		<p class="text-center text-stone-500">No categories yet.</p>
+		<p class="text-center text-muted">No categories yet.</p>
 	{/each}
 </div>

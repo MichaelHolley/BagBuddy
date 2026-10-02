@@ -24,7 +24,7 @@
 	{value}
 	aria-label={label}
 	class={[
-		'min-w-0 rounded-md border border-transparent bg-transparent px-1.5 py-1 hover:border-stone-200 focus:border-teal-600 focus:bg-white focus:outline-none',
+		'min-w-0 rounded-md border border-transparent bg-transparent px-1.5 py-1 hover:border-line focus:border-ink focus:bg-white focus:outline-none',
 		className
 	]}
 	onblur={(e) => commit(e.currentTarget)}

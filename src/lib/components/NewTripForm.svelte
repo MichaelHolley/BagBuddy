@@ -5,8 +5,8 @@
 	const { fields } = createTrip;
 </script>
 
-<form {...createTrip} class="rounded-xl border border-stone-200 bg-white p-4 shadow-sm">
-	<h2 class="font-semibold">New trip</h2>
+<form {...createTrip} class="rounded-[20px] bg-white p-5">
+	<h2 class="text-xl font-medium tracking-[-0.02em]">New trip</h2>
 	<div class="mt-3 flex gap-2">
 		<label class="min-w-0 flex-1">
 			<span class="sr-only">Trip name</span>
@@ -18,7 +18,7 @@
 		</label>
 		<label class="flex items-center gap-1.5">
 			<input {...fields.days.as('number', 7)} min="1" max="365" class="w-16 field" />
-			<span class="text-sm text-stone-500">days</span>
+			<span class="text-sm text-muted">days</span>
 		</label>
 	</div>
 	<FieldIssues issues={fields.name.issues()} />

@@ -6,7 +6,7 @@
 
 <svelte:head><title>Trips · BagBuddy</title></svelte:head>
 
-<h1 class="text-2xl font-bold">Your trips</h1>
+<h1 class="heading">Your trips</h1>
 
 <div class="mt-4 flex flex-col gap-3">
 	<NewTripForm />
@@ -14,6 +14,6 @@
 	{#each await getTrips() as trip (trip.id)}
 		<TripCard {trip} />
 	{:else}
-		<p class="py-6 text-center text-stone-500">No trips yet — create your first one above.</p>
+		<p class="py-6 text-center text-muted">No trips yet — create your first one above.</p>
 	{/each}
 </div>

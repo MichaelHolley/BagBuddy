@@ -65,7 +65,7 @@
 
 <svelte:head><title>{trip.name} · BagBuddy</title></svelte:head>
 
-<a href="/" class="-ml-1 inline-flex items-center text-sm text-stone-500 hover:text-stone-900">
+<a href="/" class="-ml-1 inline-flex items-center text-sm text-muted hover:text-ink">
 	<Icon name="back" class="size-4" /> Trips
 </a>
 
@@ -73,11 +73,11 @@
 	<InlineEdit
 		value={trip.name}
 		label="Trip name"
-		class="-mx-1.5 w-full text-2xl font-bold"
+		class="-mx-1.5 w-full heading"
 		onsave={(name) => patchTrip({ name })}
 	/>
 	<div class="flex items-center justify-between gap-3">
-		<div class="flex items-center gap-1 rounded-full border border-stone-200 bg-white pr-3">
+		<div class="flex items-center gap-1 rounded-full border border-line bg-white pr-3">
 			<Stepper
 				value={trip.days}
 				min={1}
@@ -85,7 +85,7 @@
 				label="days"
 				onchange={(days) => patchTrip({ days })}
 			/>
-			<span class="text-sm text-stone-500">{trip.days === 1 ? 'day' : 'days'}</span>
+			<span class="text-sm text-muted">{trip.days === 1 ? 'day' : 'days'}</span>
 		</div>
 		<div class="flex gap-2">
 			<button class="btn-secondary px-3" onclick={() => (duplicating = !duplicating)}>
@@ -112,8 +112,8 @@
 		class="w-full resize-y field text-sm"
 		onchange={(e) => patchTrip({ notes: e.currentTarget.value })}></textarea>
 	{#if trip.items.length}
-		<div class="rounded-xl bg-white p-3 shadow-sm">
-			<p class="mb-1.5 text-sm font-medium text-stone-600">
+		<div class={['rounded-[20px] p-4', packed === trip.items.length ? 'bg-lime' : 'bg-white']}>
+			<p class="mb-1.5 text-sm font-medium">
 				{packed === trip.items.length ? 'All packed! 🎉' : 'Packing progress'}
 			</p>
 			<ProgressBar done={packed} total={trip.items.length} />
@@ -131,18 +131,18 @@
 			onremove={removeItem}
 		/>
 	{:else}
-		<p class="rounded-xl border border-dashed border-stone-300 p-6 text-center text-stone-500">
+		<p class="rounded-[20px] border border-dashed border-line p-6 text-center text-muted">
 			Your list is empty. Add some categories below to get started.
 		</p>
 	{/each}
 </div>
 
 <section class="mt-8">
-	<h2 class="mb-3 font-semibold">Add categories</h2>
+	<h2 class="mb-3 text-xl font-medium tracking-[-0.02em]">Add categories</h2>
 	<AddCategoryPicker tripId={trip.id} categories={catalog} {addedSourceIds} />
 </section>
 
 <section class="mt-8 mb-12">
-	<h2 class="mb-3 font-semibold">Add a custom item</h2>
+	<h2 class="mb-3 text-xl font-medium tracking-[-0.02em]">Add a custom item</h2>
 	<CustomItemForm tripId={trip.id} categories={catalog} />
 </section>

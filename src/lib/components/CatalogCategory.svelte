@@ -21,28 +21,28 @@
 	}
 </script>
 
-<details class="group rounded-xl border border-stone-200 bg-white shadow-sm">
+<details class="group rounded-[20px] bg-white">
 	<summary
 		class="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 select-none"
 	>
-		<span class="font-semibold">{category.name}</span>
-		<span class="text-sm text-stone-500">{category.items.length} items</span>
+		<span class="font-medium">{category.name}</span>
+		<span class="text-sm text-muted">{category.items.length} items</span>
 	</summary>
 
-	<div class="border-t border-stone-100 px-4 pb-4">
+	<div class="border-t border-wash px-4 pb-4">
 		<form {...rename} class="flex items-center gap-2 pt-3">
 			<input {...rename.fields.id.as('hidden', category.id)} />
 			<input
 				{...rename.fields.name.as('text', category.name)}
 				aria-label="Category name"
-				class="min-w-0 flex-1 field font-semibold"
+				class="min-w-0 flex-1 field font-medium"
 			/>
 			<IconButton type="submit" icon="check" label="Rename category" disabled={!!rename.pending} />
 			<IconButton icon="trash" label="Delete category" onclick={remove} />
 		</form>
 		<FieldIssues issues={rename.fields.name.issues()} />
 
-		<div class="divide-y divide-stone-100">
+		<div class="divide-y divide-wash">
 			{#each category.items as item (item.id)}
 				<CatalogItemRow {item} />
 			{/each}
@@ -52,7 +52,7 @@
 			{...create.enhance(async ({ submit, element }) => {
 				if (await submit()) element.reset();
 			})}
-			class="mt-2 flex flex-col gap-2 rounded-lg bg-stone-50 p-3 sm:flex-row sm:items-start"
+			class="mt-2 flex flex-col gap-2 rounded-lg bg-paper p-3 sm:flex-row sm:items-start"
 		>
 			<input {...create.fields.categoryId.as('hidden', category.id)} />
 			<div class="flex-1">

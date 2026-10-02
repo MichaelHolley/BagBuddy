@@ -26,7 +26,7 @@
 		disabled={value <= min}
 		onclick={() => onchange(value - 1)}
 	/>
-	<span class={['min-w-7 text-center font-semibold tabular-nums', className]}>{value}</span>
+	<span class={['min-w-7 text-center font-medium tabular-nums', className]}>{value}</span>
 	<IconButton
 		icon="plus"
 		label="Increase {label}"

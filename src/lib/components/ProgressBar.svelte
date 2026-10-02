@@ -6,21 +6,15 @@
 
 <div class="flex items-center gap-2">
 	<div
-		class="h-2 flex-1 overflow-hidden rounded-full bg-stone-200"
+		class="h-1.5 flex-1 overflow-hidden rounded-full bg-ink/10"
 		role="progressbar"
 		aria-valuemin={0}
 		aria-valuemax={total}
 		aria-valuenow={done}
 	>
-		<div
-			class={[
-				'h-full rounded-full transition-all',
-				percent === 100 ? 'bg-emerald-500' : 'bg-teal-600'
-			]}
-			style:width="{percent}%"
-		></div>
+		<div class="h-full rounded-full bg-ink transition-all" style:width="{percent}%"></div>
 	</div>
 	{#if label}
-		<span class="shrink-0 text-xs text-stone-500 tabular-nums">{done}/{total}</span>
+		<span class="shrink-0 text-xs font-medium tabular-nums">{done}/{total}</span>
 	{/if}
 </div>

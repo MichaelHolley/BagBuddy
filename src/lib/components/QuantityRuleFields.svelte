@@ -42,10 +42,10 @@
 				step="0.01"
 				class="w-16 field"
 			/>
-			<span class="text-stone-500">/day</span>
+			<span class="text-muted">/day</span>
 		</label>
 		<label class="flex items-center gap-1">
-			<span class="text-stone-500">max</span>
+			<span class="text-muted">max</span>
 			<input
 				{...fields.max.as('number', rule.max ?? undefined)}
 				min="1"

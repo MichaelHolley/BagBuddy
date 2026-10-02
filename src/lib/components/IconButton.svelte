@@ -22,8 +22,8 @@
 	class={[
 		'grid size-9 shrink-0 place-items-center rounded-full transition disabled:opacity-40',
 		variant === 'primary'
-			? 'bg-teal-700 text-white hover:bg-teal-800'
-			: 'text-stone-500 hover:bg-stone-100 hover:text-stone-900',
+			? 'bg-ink text-paper hover:bg-ink/85'
+			: 'text-muted hover:bg-ink/5 hover:text-ink',
 		className
 	]}
 	{...rest}

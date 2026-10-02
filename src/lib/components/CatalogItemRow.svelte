@@ -27,7 +27,7 @@
 				type="submit"
 				icon="check"
 				label="Save {item.name}"
-				class={edit.fields.dirty() ? 'text-teal-700' : ''}
+				class={edit.fields.dirty() ? 'text-ink' : ''}
 				disabled={!!edit.pending}
 			/>
 			<IconButton
