@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { TripItem } from '#lib/api/trips.remote.js';
+	import Icon from './Icon.svelte';
 	import ProgressBar from './ProgressBar.svelte';
 	import TripItemRow, { type TripItemPatch } from './TripItemRow.svelte';
 
@@ -18,21 +19,33 @@
 	} = $props();
 
 	const packed = $derived(items.filter((item) => item.packed).length);
+
+	let collapsed = $state(false);
 </script>
 
 <section class="rounded-[20px] bg-white px-3 py-4">
-	<header class="mb-1 flex items-center gap-3 px-1">
-		<h2 class="font-medium">{name}</h2>
-		<div class="ml-auto w-28"><ProgressBar done={packed} total={items.length} /></div>
-	</header>
-	<ul class="divide-y divide-wash">
-		{#each items as item (item.id)}
-			<TripItemRow
-				{item}
-				{days}
-				onpatch={(patch) => onpatch(item, patch)}
-				onremove={() => onremove(item)}
-			/>
-		{/each}
-	</ul>
+	<h2 class={['px-1', !collapsed && 'mb-1']}>
+		<button
+			type="button"
+			class="flex w-full items-center gap-3 text-left"
+			aria-expanded={!collapsed}
+			onclick={() => (collapsed = !collapsed)}
+		>
+			<Icon name="chevron" class={['size-4 shrink-0 transition-transform', collapsed && '-rotate-90']} />
+			<span class="font-medium">{name}</span>
+			<span class="ml-auto w-28"><ProgressBar done={packed} total={items.length} /></span>
+		</button>
+	</h2>
+	{#if !collapsed}
+		<ul class="divide-y divide-wash">
+			{#each items as item (item.id)}
+				<TripItemRow
+					{item}
+					{days}
+					onpatch={(patch) => onpatch(item, patch)}
+					onremove={() => onremove(item)}
+				/>
+			{/each}
+		</ul>
+	{/if}
 </section>

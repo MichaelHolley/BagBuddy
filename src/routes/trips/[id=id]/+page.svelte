@@ -121,7 +121,12 @@
 	{/if}
 </header>
 
-<div class="mt-6 flex flex-col gap-3">
+<section class="mt-6">
+	<h2 class="mb-3 text-xl font-medium tracking-[-0.02em]">Add categories</h2>
+	<AddCategoryPicker tripId={trip.id} categories={catalog} {addedSourceIds} />
+</section>
+
+<div class="mt-8 flex flex-col gap-3">
 	{#each groups as [name, items] (name)}
 		<TripCategorySection
 			{name}
@@ -132,15 +137,10 @@
 		/>
 	{:else}
 		<p class="rounded-[20px] border border-dashed border-line p-6 text-center text-muted">
-			Your list is empty. Add some categories below to get started.
+			Your list is empty. Add some categories above to get started.
 		</p>
 	{/each}
 </div>
-
-<section class="mt-8">
-	<h2 class="mb-3 text-xl font-medium tracking-[-0.02em]">Add categories</h2>
-	<AddCategoryPicker tripId={trip.id} categories={catalog} {addedSourceIds} />
-</section>
 
 <section class="mt-8 mb-12">
 	<h2 class="mb-3 text-xl font-medium tracking-[-0.02em]">Add a custom item</h2>
